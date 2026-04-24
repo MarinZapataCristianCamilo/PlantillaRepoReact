@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
-function Login() {
-  const { login, isAuthenticated } = useAuth();
+function Register() {
+  const { register, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const result = login(username, password);
+    const result = register(username, email, password, confirmPassword);
     if (!result.success) {
       setError(result.message);
       return;
@@ -30,10 +32,10 @@ function Login() {
     <section className="login-page">
       <div className="login-card card">
         <div className="card-header">
-          <h2>Iniciar sesión</h2>
+          <h2>Regístrate</h2>
         </div>
         <div className="card-content">
-          <p className="helper">Usa tu usuario y contraseña registrados para entrar.</p>
+          <p className="helper">Crea tu cuenta para empezar a publicar en la red social.</p>
           <input
             type="text"
             placeholder="Usuario"
@@ -41,19 +43,31 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
+            type="email"
+            placeholder="Correo electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
             type="password"
             placeholder="Contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <input
+            type="password"
+            placeholder="Confirmar contraseña"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
           {error && <div className="alert">{error}</div>}
           <button type="button" onClick={handleSubmit}>
-            Entrar
+            Registrarme
           </button>
           <p className="helper">
-            ¿No tienes una cuenta?{' '}
-            <button type="button" className="link-button" onClick={() => navigate('/register')}>
-              Regístrate
+            ¿Ya tienes cuenta?{' '}
+            <button type="button" className="link-button" onClick={() => navigate('/login')}>
+              Inicia sesión
             </button>
           </p>
         </div>
@@ -62,4 +76,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

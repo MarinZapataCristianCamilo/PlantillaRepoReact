@@ -186,6 +186,24 @@ export function PostProvider({ children }) {
     );
   };
 
+  const deletePost = (postId) => {
+    setPosts((prev) => prev.filter((post) => post.id !== postId));
+  };
+
+  const updatePost = (postId, content, image) => {
+    setPosts((prev) =>
+      prev.map((post) =>
+        post.id === postId
+          ? { ...post, content, image: image || null }
+          : post
+      )
+    );
+  };
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+  }, [posts]);
+
   return (
     <PostContext.Provider
       value={{
@@ -195,6 +213,8 @@ export function PostProvider({ children }) {
         addComment,
         addReply,
         sharePost,
+        deletePost,
+        updatePost,
       }}
     >
       {children}

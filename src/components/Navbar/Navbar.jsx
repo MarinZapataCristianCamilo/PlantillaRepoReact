@@ -40,7 +40,10 @@ function Navbar() {
             </button>
           </>
         ) : (
-          <NavLink to="/login">Iniciar sesión</NavLink>
+          <>
+            <NavLink to="/login">Iniciar sesión</NavLink>
+            <NavLink to="/register">Registrarse</NavLink>
+          </>
         )}
       </div>
     </header>

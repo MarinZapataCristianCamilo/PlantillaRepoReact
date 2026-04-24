@@ -223,9 +223,14 @@ a {
   font-size: 0.96rem;
 }
 
+.post-form {
+  display: grid;
+  gap: 16px;
+}
+
 .post-form textarea {
   width: 100%;
-  min-height: 110px;
+  min-height: 120px;
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 16px;
@@ -245,7 +250,7 @@ a {
 
 .post-form .post-actions input {
   width: 100%;
-  max-width: 260px;
+  max-width: 320px;
   padding: 12px 14px;
   border-radius: 14px;
   border: 1px solid var(--border);
@@ -253,18 +258,19 @@ a {
 }
 
 .post-form .btn-primary {
-  padding: 12px 18px;
+  padding: 12px 24px;
   border: none;
   border-radius: 16px;
   background: var(--primary);
   color: white;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .post-item {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  gap: 18px;
+  padding: 18px 20px;
 }
 
 .post-item .post-header {
@@ -301,6 +307,23 @@ a {
 .post-item .post-body img {
   border-radius: 18px;
   margin-top: 16px;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.post-item .post-edit {
+  display: grid;
+  gap: 14px;
+}
+
+.post-item .post-edit textarea,
+.post-item .post-edit input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  background: #fafbff;
 }
 
 .post-item .post-stats {
@@ -325,11 +348,16 @@ a {
   border-radius: 14px;
   background: #f6f8ff;
   padding: 12px 14px;
-  display: flex;
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   color: var(--text);
   font-weight: 600;
+}
+
+.post-item .post-actions button:hover {
+  background: #eef2ff;
 }
 
 .comment-box {

@@ -7,7 +7,16 @@ import { useAuth } from '../hooks/useAuth';
 
 function Home() {
   const { user } = useAuth();
-  const { posts, addPost, toggleLike, addComment, addReply, sharePost } = usePost();
+  const {
+    posts,
+    addPost,
+    toggleLike,
+    addComment,
+    addReply,
+    sharePost,
+    deletePost,
+    updatePost,
+  } = usePost();
 
   return (
     <div className="home-grid">
@@ -38,6 +47,8 @@ function Home() {
               onShare={sharePost}
               onComment={addComment}
               onReply={addReply}
+              onEdit={updatePost}
+              onDelete={deletePost}
             />
           ))
         )}
